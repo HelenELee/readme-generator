@@ -1,43 +1,25 @@
+const { licenses } = require("./licenses.js");
+const excludeArray = ["welcome", "projectTitle", "github", "email"];
 
 
 function createTableOfContents(response) {
-  let toc = '';
+  let toc='';
   let lCase;
   for (const label in response) {
-    if (label != "projectTitle" && label != "welcome") {
+    if (!excludeArray.includes(label) && response[label] != "") {
       labelFormat = label.toLowerCase().replace(/\s/g, '-');
-      toc+=`[${label}](#${labelFormat})\n\t`;
+      toc+=` - [${label}](#${labelFormat})\n`; 
     }
     
   }
-  return toc;
-}
-
-/*
-## Table of Contents
-  * [Description](#description)
-  * [Installation](#installation)
-  * [User Instructions](#user-instructions)
-  */
-
-function generateMarkdown(response) {
-  const toc = createTableOfContents(response);
-  const template = `
+  if (toc != ""){
+    return `## Table of Contents\n${toc}`
+  } else {
+    return "";
+  }
   
-  # ${response.license}
-  # ${response.projectTitle}
-
-  ## Table Of Contents
-  ${toc}  
-  ## Description
-  ${response.description}\n
-  ## Installation
-  ${response.installation}\n
-  ## User Instructions
-  ${response.usage}\n
-  `
-  return template;
 }
+
 
 // TODO: Create a function that returns a license badge based on which license is passed in
 // If there is no license, return an empty string
@@ -49,26 +31,75 @@ function renderLicenseLink(license) {}
 
 // TODO: Create a function that returns the license section of README
 // If there is no license, return an empty string
-function renderLicenseSection(license) {}
 
-// TODO: Create a function to generate markdown for README
-function generateMarkdownxx(fileName, response) {
-  //return `# ${data.title}
-  
+function getLicenseDetailsxxx(license) {
+  var currentLicense = licenses.filter(obj => obj.name === license);
+  return currentLicense;
+}
 
-  createFile(fileName, template);
+function renderLicenseSection(license, link) {  
+  licenseText = `## License
+  This project is covered by the "${license}" license.
+  For more details click on the link below:
+  ${link}
+  `
+  return licenseText;
+}
 
-  /*
-  renderTitle(fileName, response.projectTitle);
+function renderQuestions(response){
+  const templateTitle = "## Questions"
+  let templateDetails;
+  if (response.question == "") {
+    templateDetails = `${templateTitle}\n`;
+    templateDetails +=` Contact details below:\n`;
+    templateDetails +=` Github : ${response.github} Email : ${response.email}`;
+  } else {
+    templateDetails = `${templateTitle}\n`;
+    templateDetails += ` ${response.question}\n`;
+    templateDetails += ` Github : ${response.github} Email : ${response.email}`;
+  }
+ // console.log("questions " + templateDetails);
+  return templateDetails;
+}
 
-  renderSubTitle(fileName, "Description");
+function renderSection(sectionTitle, sectionText){
+  if (sectionText == ''){
+    return "";
+  }
+  return `## ${sectionTitle}
+  ${sectionText}
+  `
+}
 
-  renderText(fileName, response.description);
-  
-  renderSubTitle(fileName, "Installation Instructions");
+function generateMarkdown(response) {
+ // console.log("generate!!!!!!");
+  const currentLicense = licenses.filter(obj => obj.name === response.license);
+  //const licenseDetails = getLicenseDetails(response.license);
+  const { name:licenseName, badge:licenseBadge, link:licenseLink } = currentLicense[0];
 
- renderText(fileName, response.installation);
-    */
+ // const licenseText = renderLicenseSection(licenseName);
+  const toc = createTableOfContents(response);
+  const questions = renderQuestions(response);
+  const licenseText = renderLicenseSection(licenseName, licenseLink);
+  const description = renderSection("Description", response.description);
+  const installation = renderSection("Installation", response.installation);
+  const usage = renderSection("Usage", response.usage);
+  const contributing = renderSection("Contributing Guidelines", response.contributing);
+  const test = renderSection("Test Insructions", response.test);
+
+  const template = `
+  # ${licenseBadge}(${licenseLink})\n
+  # ${response.projectTitle}\n
+  ${toc}  
+  ${description}
+  ${installation}
+  ${usage}
+  ${licenseText}
+  ${contributing}
+  ${test}
+  ${questions}
+  `
+  return template;
 }
 
 module.exports = {generateMarkdown};

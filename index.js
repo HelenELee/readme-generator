@@ -7,8 +7,18 @@ const { generateMarkdown } = require("./utils/generateMarkdown.js");
 const licBadge = "[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)";
 const fileName = "README.md";
 
+const { licenses } = require("./utils/licenses.js");
+//console.log(licenses);
+//const licenseNames = licenses.map(element => element.name);
+//console.log(licenseNames);
+//const currentLicense = licenses.filter(obj => obj.name === "The MIT License");
+//console.log(currentLicense);
+//var currentLicense = licenses.filter(obj => obj.name === "The MIT License");
+//console.log(currentLicense);
+//console.log(currentLicense[0]);
 
-
+//const { name, badge, link } = currentLicense[0];
+//console.log(badge);
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {}
@@ -24,6 +34,7 @@ function init() {
     inquirer
   .prompt(questions)
   .then((response) => {
+    console.log(response);
     //console.log(response);
     //console.log(response.projectTitle);
     //console.log(response.description);

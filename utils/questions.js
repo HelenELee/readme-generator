@@ -1,14 +1,15 @@
-//const { __generator } = require("tslib");
-
-const { turquoise } = require("color-name");
+const { licenses } = require("./licenses.js");
+//console.log(licenses);
+const licenseNames = licenses.map(element => element.name);
+//console.log(licenseNames);
 
 // TODO: Create an array of questions for user input
 const instructions = [
   {
     type: 'confirm',
-    message: '------------------------' +
+    message: '-------------------------------' +
     'Welcome to the Reamde generator' +
-    '------------------------' +
+    '-------------------------------' +
     'You will be prompted for details to be included in the Readme.' +
     'Project Title and Description are mandatory.' +
     'When prompted for some details a text editor will pop up.' +
@@ -20,9 +21,9 @@ const instructions = [
 const questions = [
   {
     type: 'confirm',
-    message: '------------------------\n' +
+    message: '------------------------------\n' +
     'Welcome to the README Generator\n' +
-    '--------------------------\n' +
+    '--------------------------------\n' +
     'You will be prompted for details to be included in the Readme.\n' +
     'Project Title and Description are mandatory.\n' +
     'When prompted for some details a text editor will pop up.\n' +
@@ -76,6 +77,8 @@ const questions = [
     {
       message : "Please choose your License:",
       type : 'list',
+      choices :licenseNames,
+      /*
       choices: [
             { name: 'Apache 2.0 License', value: '[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)' },
             { name: 'Boost', value: '[![License](https://img.shields.io/badge/License-Boost_1.0-lightblue.svg)](https://www.boost.org/LICENSE_1_0.txt)' },
@@ -93,42 +96,49 @@ const questions = [
             { name: 'The Perl License', value: '[![License: Artistic-2.0](https://img.shields.io/badge/License-Perl-0298c3.svg)](https://opensource.org/licenses/Artistic-2.0)'},
             { name: 'The Unlicense', value: '[![License: Unlicense](https://img.shields.io/badge/license-Unlicense-blue.svg)](http://unlicense.org/)'},
       ],  
+      */
        name : "license",
        when: (answers) => answers.welcome === true,
        default: "The MIT License",
     },
-    /*
+  
     {
       type: 'input',
       message: 'Please enter your Contributing Guidelines:',
       name: 'contributing',
+      when: (answers) => answers.welcome === true,
     },
     {
       type: 'input',
       message: 'Please enter your Test Instructions:',
       name: 'test',
+      when: (answers) => answers.welcome === true,
     },
     {
       type: 'input',
       message: 'Please enter your Question Instructions:',
       name: 'question',
+      when: (answers) => answers.welcome === true,
     },
     {
       type: 'input',
       message: 'Please enter your GitHub username:',
       name: 'github',
+      when: (answers) => answers.welcome === true,
     },
     {
       type: 'input',
       message: 'Please enter your Email Address:',
       name: 'email',
+      when: (answers) => answers.welcome === true,
     },
+    /*
     {
       type: 'editor',
       name: 'story',
       message: 'Tell me a story, a really long one!',
-    },
-    */
+    },*/
+    
 ];
 
 module.exports.questions = questions;
