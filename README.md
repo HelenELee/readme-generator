@@ -5,18 +5,10 @@
 
   ## Table Of Contents
   [description](#description)
-<<<<<<< HEAD
 	[installation](#installation)
 	[usage](#usage)
 	[license](#license)
 	  
-=======
-  [installation](#installation)
-  [usage](#usage)
-  [license](#license)
-  
-  
->>>>>>> 03ba75937bf5e4e2952dc58bafb97e671628362b
   ## Description
   Your task is to create a command-line application that dynamically generates a professional README.md file from a user's input using the Inquirer package. Review the Professional README Guide as a reminder of everything that a high-quality, professional README should contain.
 
