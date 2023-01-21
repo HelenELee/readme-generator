@@ -1,14 +1,41 @@
+//const { __generator } = require("tslib");
+
+// TODO: Create an array of questions for user input
+const instructions = [
+  {
+    type: 'confirm',
+    message: '---------------\nWelcome to the Reamde generator\n------------------------',
+    name: 'welcome',
+  },
+]
 const questions = [
     {
       type: 'input',
       message: 'What is your Project Title?',
       name: 'projectTitle',
+      validate: proj => {
+        if (proj) {
+            return true;
+        } else {
+            console.log('Please provide a project title!');
+            return false;
+        }
+      }
     },
     {
       type: 'input',
       message: 'Please enter your Project description:',
       name: 'description',
+      validate: desc => {
+        if (desc) {
+            return true;
+        } else {
+            console.log('Please provide a project description!');
+            return false;
+        }
+    }
     },
+    
     {
       type: 'input',
       message: 'Please enter your Installation Instructions:',
@@ -19,6 +46,7 @@ const questions = [
       message: 'Please enter your Usage Instructions:',
       name: 'usage',
     },
+    
     {
       message : "Please choose your License:",
       type : 'list',
@@ -42,6 +70,7 @@ const questions = [
        name : "license",
        default: "The MIT License",
     },
+    /*
     {
       type: 'input',
       message: 'Please enter your Contributing Guidelines:',
@@ -65,13 +94,14 @@ const questions = [
     {
       type: 'input',
       message: 'Please enter your Email Address:',
-      name: 'usage',
+      name: 'email',
     },
     {
       type: 'editor',
       name: 'story',
       message: 'Tell me a story, a really long one!',
     },
+    */
 ];
 
 module.exports.questions = questions;
