@@ -1,18 +1,41 @@
 //const { __generator } = require("tslib");
 
+const { turquoise } = require("color-name");
+
 // TODO: Create an array of questions for user input
 const instructions = [
   {
     type: 'confirm',
-    message: '---------------\nWelcome to the Reamde generator\n------------------------',
+    message: '------------------------' +
+    'Welcome to the Reamde generator' +
+    '------------------------' +
+    'You will be prompted for details to be included in the Readme.' +
+    'Project Title and Description are mandatory.' +
+    'When prompted for some details a text editor will pop up.' +
+    'Please enter details in the text editor, save and exit.' +
+    '',
     name: 'welcome',
   },
 ]
 const questions = [
+  {
+    type: 'confirm',
+    message: '------------------------\n' +
+    'Welcome to the README Generator\n' +
+    '--------------------------\n' +
+    'You will be prompted for details to be included in the Readme.\n' +
+    'Project Title and Description are mandatory.\n' +
+    'When prompted for some details a text editor will pop up.\n' +
+    'Please enter details in the text editor, save and exit.\n' +
+    'If you do not enter details for a section it will be omitted from the README.\n' +
+    'Do you want to continue?',
+    name: 'welcome',
+  },
     {
       type: 'input',
       message: 'What is your Project Title?',
       name: 'projectTitle',
+      when: (answers) => answers.welcome === true,
       validate: proj => {
         if (proj) {
             return true;
@@ -26,6 +49,7 @@ const questions = [
       type: 'input',
       message: 'Please enter your Project description:',
       name: 'description',
+      when: (answers) => answers.welcome === true,
       validate: desc => {
         if (desc) {
             return true;
@@ -40,10 +64,12 @@ const questions = [
       type: 'input',
       message: 'Please enter your Installation Instructions:',
       name: 'installation',
+      when: (answers) => answers.welcome === true,
     },
     {
       type: 'input',
       message: 'Please enter your Usage Instructions:',
+      when: (answers) => answers.welcome === true,
       name: 'usage',
     },
     
@@ -68,6 +94,7 @@ const questions = [
             { name: 'The Unlicense', value: '[![License: Unlicense](https://img.shields.io/badge/license-Unlicense-blue.svg)](http://unlicense.org/)'},
       ],  
        name : "license",
+       when: (answers) => answers.welcome === true,
        default: "The MIT License",
     },
     /*

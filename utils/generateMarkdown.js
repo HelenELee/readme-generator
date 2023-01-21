@@ -4,9 +4,9 @@ function createTableOfContents(response) {
   let toc = '';
   let lCase;
   for (const label in response) {
-    if (label != "projectTitle") {
-      lCase = label.toLowerCase();
-      toc+=`[${label}](${lCase})\n`;
+    if (label != "projectTitle" && label != "welcome") {
+      labelFormat = label.toLowerCase().replace(/\s/g, '-');
+      toc+=`[${label}](#${labelFormat})\n\t`;
     }
     
   }

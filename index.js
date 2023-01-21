@@ -15,7 +15,7 @@ function writeToFile(fileName, data) {}
 
 function createFile(fileName, text) {
   fs.writeFile(fileName, text, (err) =>
-    err ? console.error(err) : console.log('File created!')
+    err ? console.error(err) : console.log('Your README file has been created!')
     )
 }
 
@@ -28,12 +28,19 @@ function init() {
     //console.log(response.projectTitle);
     //console.log(response.description);
     //console.log(response.installation);
-    const template = generateMarkdown(response);
-    return template;   
+    if (response.welcome === true) {
+      const template = generateMarkdown(response);
+      return template; 
+    } else {
+      return Promise.reject('Exit');
+    }
   })
   .then((response) => {
     createFile(fileName, response);
   })
+  .catch(function(error) {
+    console.log("Goodbye!");
+})
 
 }
 
