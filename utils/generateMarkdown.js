@@ -1,14 +1,21 @@
 const { licenses } = require("./licenses.js");
 const excludeArray = ["welcome", "projectTitle", "github", "email"];
 
+function titleCase(str) {
+  return str.toLowerCase().split(' ').map(function(word) {
+    return (word.charAt(0).toUpperCase() + word.slice(1));
+  }).join(' ');
+}
 
 function createTableOfContents(response) {
   let toc='';
-  let lCase;
+  let hyphenLabel;
+  let titleCaseLabel;
   for (const label in response) {
     if (!excludeArray.includes(label) && response[label] != "") {
-      labelFormat = label.toLowerCase().replace(/\s/g, '-');
-      toc+=` - [${label}](#${labelFormat})\n`; 
+      titleCaseLabel = titleCase(label.replace(/XXX/g, ' '));
+      hyphenLabel = label.replace(/XXX/g, '-').toLowerCase();
+      toc+=` - [${titleCaseLabel}](#${hyphenLabel})\n`; 
     }
     
   }
@@ -49,13 +56,13 @@ function renderLicenseSection(license, link) {
 function renderQuestions(response){
   const templateTitle = "## Questions"
   let templateDetails;
-  if (response.question == "") {
+  if (response.questions == "") {
     templateDetails = `${templateTitle}\n`;
     templateDetails +=` Contact details below:\n`;
     templateDetails +=` Github : ${response.github} Email : ${response.email}`;
   } else {
     templateDetails = `${templateTitle}\n`;
-    templateDetails += ` ${response.question}\n`;
+    templateDetails += ` ${response.questions}\n`;
     templateDetails += ` Github : ${response.github} Email : ${response.email}`;
   }
  // console.log("questions " + templateDetails);
@@ -84,8 +91,8 @@ function generateMarkdown(response) {
   const description = renderSection("Description", response.description);
   const installation = renderSection("Installation", response.installation);
   const usage = renderSection("Usage", response.usage);
-  const contributing = renderSection("Contributing Guidelines", response.contributing);
-  const test = renderSection("Test Insructions", response.test);
+  const contributing = renderSection("Contributing Guidelines", response.contributingXXXguidelines);
+  const test = renderSection("Test Insructions", response.testXXXinstructions);
 
   const template = `
   # ${licenseBadge}(${licenseLink})\n

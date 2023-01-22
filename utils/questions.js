@@ -105,19 +105,19 @@ const questions = [
     {
       type: 'input',
       message: 'Please enter your Contributing Guidelines:',
-      name: 'contributing',
+      name: 'contributingXXXguidelines',
       when: (answers) => answers.welcome === true,
     },
     {
       type: 'input',
       message: 'Please enter your Test Instructions:',
-      name: 'test',
+      name: 'testXXXinstructions',
       when: (answers) => answers.welcome === true,
     },
     {
       type: 'input',
       message: 'Please enter your Question Instructions:',
-      name: 'question',
+      name: 'questions',
       when: (answers) => answers.welcome === true,
     },
     {
