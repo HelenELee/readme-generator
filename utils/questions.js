@@ -70,7 +70,6 @@ const questions = [
       when: (answers) => answers.welcome === true,
       name: 'usage',
     },
-    
     {
       message : "Please choose your License:",
       type : 'list',
@@ -80,13 +79,14 @@ const questions = [
       when: (answers) => answers.welcome === true,
       default: "The MIT License",
     },
-  
+  //adding XXX for spaces - these will be removed in TOC
     {
       type: 'input',
       message: 'Please enter your Contributing Guidelines:',
       name: 'contributingXXXguidelines',
       when: (answers) => answers.welcome === true,
     },
+    //adding XXX for spaces - these will be removed in TOC
     {
       type: 'input',
       message: 'Please enter your Test Instructions:',
