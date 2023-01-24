@@ -69,6 +69,10 @@ Some questions require more details and therefore an editor will automatically o
   
   ![Here is a screenshot of the application after all questions have been answered.](./utils/images/completed.png)
 
+  Below is a link to a video recording of how the application works.
+  
+  [Video](https://drive.google.com/file/d/1tWqCY9O0zQmO10rGFo6YknleBkY56xJw/view)
+
   ## License
   This project is covered by the "The MIT License" license.
   For more details click on the link below:

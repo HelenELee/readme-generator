@@ -57,7 +57,7 @@ const questions = [
     },
     
     {
-      type: 'input',
+      type: 'editor',
       message: 'Please enter your Installation Instructions:',
       name: 'installation',
       when: (answers) => answers.welcome === true,

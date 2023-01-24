@@ -4,7 +4,7 @@ const fs = require('fs');
 //get access to questions array
 const {questions} = require("./utils/questions.js");
 const { generateMarkdown } = require("./utils/generateMarkdown.js");
-//set name for file that will be genrated
+//set name for file that will be generated
 const fileName = "README_Sample.md";
 //get access to all license details
 const { licenses } = require("./utils/licenses.js");
@@ -12,7 +12,7 @@ const { licenses } = require("./utils/licenses.js");
 // function to write data to README file
 function createFile(fileName, text) {
   fs.writeFile(fileName, text, (err) =>
-    err ? console.error(err) : console.log('Your README file has been created!')
+    err ? console.error(err) : console.log(`Your README file called ${fileName} has been created!`)
     )
 }
 
